@@ -1,13 +1,5 @@
 import 'package:flutter/material.dart';
 
-class Motto extends StatefulWidget {
-  final Function callback;
-  const Motto(this.callback, {super.key});
-
-  @override
-  State<Motto> createState() => _MottoState();
-}
-
 // used for the values in the radio buttons
 enum Mottos{
   hate(mottoString:"Haters gonna hate"), 
@@ -22,9 +14,23 @@ enum Mottos{
   final String mottoString;
 }
 
-class _MottoState extends State<Motto> {
+// ignore: must_be_immutable
+class Motto extends StatefulWidget {
+  final Function callback;
   // the group value of the radio buttons
   Mottos _mottoChoice = Mottos.hate;
+
+  Motto(this.callback, {super.key});
+
+  static void reset(Motto motto){
+    motto._mottoChoice = Mottos.hate;
+  }
+
+  @override
+  State<Motto> createState() => _MottoState();
+}
+
+class _MottoState extends State<Motto> {
 
   @override
   Widget build(BuildContext context) {
@@ -36,91 +42,91 @@ class _MottoState extends State<Motto> {
         ListTile(
           title: Text(Mottos.hate.mottoString),
           leading: Radio<Mottos>(
-            groupValue: _mottoChoice,
+            groupValue: widget._mottoChoice,
             value: Mottos.hate,
             onChanged: (Mottos? value){
               setState(() {
-                _mottoChoice = value!;
+                widget._mottoChoice = value!;
               });
-              widget.callback(_mottoChoice.mottoString);
+              widget.callback(widget._mottoChoice.mottoString);
             },
           ),
         ),
         ListTile(
           title: Text(Mottos.bake.mottoString),
           leading: Radio<Mottos>(
-            groupValue: _mottoChoice,
+            groupValue: widget._mottoChoice,
             value: Mottos.bake,
             onChanged: (Mottos? value){
               setState(() {
-                _mottoChoice = value!;
+                widget._mottoChoice = value!;
               });
-              widget.callback(_mottoChoice.mottoString);
+              widget.callback(widget._mottoChoice.mottoString);
             },
           ),
         ),
         ListTile(
           title: Text(Mottos.borrow.mottoString),
           leading: Radio<Mottos>(
-            groupValue: _mottoChoice,
+            groupValue: widget._mottoChoice,
             value: Mottos.borrow,
             onChanged: (Mottos? value){
               setState(() {
-                _mottoChoice = value!;
+                widget._mottoChoice = value!;
               });
-              widget.callback(_mottoChoice.mottoString);
+              widget.callback(widget._mottoChoice.mottoString);
             },
           ),
         ),
         ListTile(
           title: Text(Mottos.less.mottoString),
           leading: Radio<Mottos>(
-            groupValue: _mottoChoice,
+            groupValue: widget._mottoChoice,
             value: Mottos.less,
             onChanged: (Mottos? value){
               setState(() {
-                _mottoChoice = value!;
+                widget._mottoChoice = value!;
               });
-              widget.callback(_mottoChoice.mottoString);
+              widget.callback(widget._mottoChoice.mottoString);
             },
           ),
         ),
         ListTile(
           title: Text(Mottos.sorry.mottoString),
           leading: Radio<Mottos>(
-            groupValue: _mottoChoice,
+            groupValue: widget._mottoChoice,
             value: Mottos.sorry,
             onChanged: (Mottos? value){
               setState(() {
-                _mottoChoice = value!;
+                widget._mottoChoice = value!;
               });
-              widget.callback(_mottoChoice.mottoString);
+              widget.callback(widget._mottoChoice.mottoString);
             },
           ),
         ),
         ListTile(
           title: Text(Mottos.strangers.mottoString),
           leading: Radio<Mottos>(
-            groupValue: _mottoChoice,
+            groupValue: widget._mottoChoice,
             value: Mottos.strangers,
             onChanged: (Mottos? value){
               setState(() {
-                _mottoChoice = value!;
+                widget._mottoChoice = value!;
               });
-              widget.callback(_mottoChoice.mottoString);
+              widget.callback(widget._mottoChoice.mottoString);
             },
           ),
         ),
         ListTile(
           title: Text(Mottos.bridge.mottoString),
           leading: Radio<Mottos>(
-            groupValue: _mottoChoice,
+            groupValue: widget._mottoChoice,
             value: Mottos.bridge,
             onChanged: (Mottos? value){
               setState(() {
-                _mottoChoice = value!;
+                widget._mottoChoice = value!;
               });
-              widget.callback(_mottoChoice.mottoString);
+              widget.callback(widget._mottoChoice.mottoString);
             },
           ),
         )

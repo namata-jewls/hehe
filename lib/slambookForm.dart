@@ -27,11 +27,33 @@ class _SlambookFormState extends State<SlambookForm> {
   String _superpower = "Makalipad";
   String _motto = Mottos.hate.mottoString;
 
+  void reset(){
+    setState(() {
+      _name = "";
+      _nickname = "";
+      _age = 0;
+      _inRelationship = false;
+      _happinessLevel = 1;
+      _superpower = "Makalipad";
+      _motto = Mottos.hate.mottoString;
+    });
+  }
+
+  late SwitchWidget sw;
+  late HappySlider hs;
+  late SuperpowerDropdown sd;
+  late Motto motto;
+
   // boolean that is used for showing summary
   bool _showSummary = false;
 
   @override
   Widget build(BuildContext context) {
+    // initialize the widgets to be used
+    sw = SwitchWidget((bool val) => _inRelationship = val);
+    hs = HappySlider((double val) => _happinessLevel = val);
+    sd = SuperpowerDropdown((String val) => _superpower = val);
+    motto = Motto((String val) => _motto = val);
     return Container(
       margin: const EdgeInsets.symmetric(vertical:20, horizontal:5),
       child: Form(
@@ -54,14 +76,15 @@ class _SlambookFormState extends State<SlambookForm> {
                 ),
                 Container(
                   // Switch for inRelationship
-                  child: const Text("In a Relationship?", style: TextStyle(fontSize: 17))),
-                SwitchWidget((bool val) => _inRelationship = val)
+                  child: const Text("In a Relationship?", style: TextStyle(fontSize: 17))
+                ),
+                sw
               ]
             ),
             // Slider, Dropdown, and Radio Buttons
-            HappySlider((double val) => _happinessLevel = val),
-            SuperpowerDropdown((String val) => _superpower = val),
-            Motto((String val) => _motto = val),
+            hs,
+            sd,
+            motto,
             // Submit Button
             Container(
               margin: const EdgeInsets.only(top: 30, bottom: 20),             
@@ -96,12 +119,15 @@ class _SlambookFormState extends State<SlambookForm> {
                 child: const Text("Reset", style: TextStyle(color: Colors.red)),
                 // resets the fields
                 onPressed: (){
-                  if(_formKey.currentState != null){
                     _formKey.currentState!.reset();
                     setState(() {
+                      reset();
+                      SwitchWidget.reset(sw);
+                      HappySlider.reset(hs);
+                      SuperpowerDropdown.reset(sd);
+                      Motto.reset(motto);
                       _showSummary = false;
                     });
-                  }
                 },
               )
             )

@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class HappySlider extends StatefulWidget {
   final Function callback;
-  const HappySlider(this.callback, {super.key});
+  // value of the slider
+  double _happiness = 1;
+  HappySlider(this.callback, {super.key});
+
+  static void reset(HappySlider hs){
+    hs._happiness = 1;
+  }
 
   @override
   State<HappySlider> createState() => _HappySliderState();
 }
 
 class _HappySliderState extends State<HappySlider> {
-  // value of the slider
-  double _happiness = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +28,16 @@ class _HappySliderState extends State<HappySlider> {
         Container(
           width: 340,
           child: Slider(
-            value: _happiness,
+            value: widget._happiness,
             min: 1,
             max: 10,
             divisions: 9,
-            label: _happiness.round().toString(),
+            label: widget._happiness.round().toString(),
             onChanged: (value){
               setState(() {
-                _happiness = value;
+                widget._happiness = value;
               });
-                widget.callback(_happiness);
+                widget.callback(widget._happiness);
             },
           )
         )

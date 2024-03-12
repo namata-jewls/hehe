@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class SuperpowerDropdown extends StatefulWidget {
   final Function callback;
-  const SuperpowerDropdown(this.callback, {super.key});
-
-  @override
-  State<SuperpowerDropdown> createState() => _SuperpowerDropdownState();
-}
-
-class _SuperpowerDropdownState extends State<SuperpowerDropdown> {
   // list of choices for dropdown
   static final List<String> _dropdownOptions = [
     "Makalipad",
@@ -26,6 +20,18 @@ class _SuperpowerDropdownState extends State<SuperpowerDropdown> {
   // value selected
   String _dropdownValue = _dropdownOptions.first;
 
+  SuperpowerDropdown(this.callback, {super.key});
+
+ static void reset(SuperpowerDropdown sd){
+    sd._dropdownValue = _dropdownOptions.first;
+ }
+
+  @override
+  State<SuperpowerDropdown> createState() => _SuperpowerDropdownState();
+}
+
+class _SuperpowerDropdownState extends State<SuperpowerDropdown> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,8 +43,8 @@ class _SuperpowerDropdownState extends State<SuperpowerDropdown> {
           const Text("Superpower", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           const Text("If you were to have a superpower, what would you choose?", style: TextStyle(fontSize: 15)),
           DropdownButtonFormField<String>(
-            value: _dropdownValue,
-            items: _dropdownOptions.map((superpower) {
+            value: widget._dropdownValue,
+            items: SuperpowerDropdown._dropdownOptions.map((superpower) {
             return DropdownMenuItem<String>(
                 child: Text(superpower),
                 value: superpower,
@@ -47,9 +53,9 @@ class _SuperpowerDropdownState extends State<SuperpowerDropdown> {
             onChanged: (val) {
               // set new value when changed
               setState(() {
-                _dropdownValue = val!;
+                widget._dropdownValue = val!;
               });
-              widget.callback(_dropdownValue);
+              widget.callback(widget._dropdownValue);
             }
           )
         ]
