@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class HappySlider extends StatefulWidget {
   final Function callback;
   // value of the slider
-  double _happiness = 1;
-  HappySlider(this.callback, {super.key});
+  double _happiness;
+  HappySlider(this._happiness, this.callback, {super.key});
 
   static void reset(HappySlider hs){
     hs._happiness = 1;

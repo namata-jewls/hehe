@@ -25,7 +25,7 @@ class _SlambookFormState extends State<SlambookForm> {
   bool _inRelationship = false;
   double _happinessLevel = 1;
   String _superpower = "Makalipad";
-  String _motto = Mottos.hate.mottoString;
+  Mottos _motto = Mottos.hate;
 
   void reset(){
     setState(() {
@@ -35,7 +35,7 @@ class _SlambookFormState extends State<SlambookForm> {
       _inRelationship = false;
       _happinessLevel = 1;
       _superpower = "Makalipad";
-      _motto = Mottos.hate.mottoString;
+      _motto = Mottos.hate;
     });
   }
 
@@ -50,10 +50,10 @@ class _SlambookFormState extends State<SlambookForm> {
   @override
   Widget build(BuildContext context) {
     // initialize the widgets to be used
-    sw = SwitchWidget((bool val) => _inRelationship = val);
-    hs = HappySlider((double val) => _happinessLevel = val);
-    sd = SuperpowerDropdown((String val) => _superpower = val);
-    motto = Motto((String val) => _motto = val);
+    sw = SwitchWidget(_inRelationship, (bool val) => _inRelationship = val);
+    hs = HappySlider(_happinessLevel, (double val) => _happinessLevel = val);
+    sd = SuperpowerDropdown(_superpower, (String val) => _superpower = val);
+    motto = Motto(_motto, (Mottos val) => _motto = val);
     return Container(
       margin: const EdgeInsets.symmetric(vertical:20, horizontal:5),
       child: Form(
@@ -99,11 +99,6 @@ class _SlambookFormState extends State<SlambookForm> {
                     _formKey.currentState!.save();
                     setState(() {
                       _showSummary = true;
-                      _formKey.currentState!.reset();
-                      sw = SwitchWidget((bool val) => _inRelationship = val);
-                      hs = HappySlider((double val) => _happinessLevel = val);
-                      sd = SuperpowerDropdown((String val) => _superpower = val);
-                      motto = Motto((String val) => _motto = val);
                     });
                   }
                 },
@@ -113,7 +108,7 @@ class _SlambookFormState extends State<SlambookForm> {
               // will show the summary depending on the boolean showSummary's value
               margin: const EdgeInsets.only(top:10),
               decoration: const BoxDecoration(border: Border(top: BorderSide(color: Colors.white54, width: 3))),
-              child: _showSummary ? Summary(_name, _nickname, _age, _inRelationship, _happinessLevel, _superpower, _motto) : SizedBox(height:10, width:MediaQuery.of(context).size.width)
+              child: _showSummary ? Summary(_name, _nickname, _age, _inRelationship, _happinessLevel, _superpower, _motto.mottoString) : SizedBox(height:10, width:MediaQuery.of(context).size.width)
             ),
             Container(
               margin: const EdgeInsets.only(top:30, bottom: 20),

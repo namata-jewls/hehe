@@ -18,9 +18,9 @@ class SuperpowerDropdown extends StatefulWidget {
   ];
 
   // value selected
-  String _dropdownValue = _dropdownOptions.first;
+  String _dropdownValue;
 
-  SuperpowerDropdown(this.callback, {super.key});
+  SuperpowerDropdown(this._dropdownValue, this.callback, {super.key});
 
  static void reset(SuperpowerDropdown sd){
     sd._dropdownValue = _dropdownOptions.first;
