@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class SwitchWidget extends StatefulWidget {
   final Function callback;
+  // value of the switch widget
   bool _yes = false;
   SwitchWidget(this.callback,{super.key});
 
@@ -10,13 +11,16 @@ class SwitchWidget extends StatefulWidget {
       sw._yes = false;
   }
 
+  static void set(SwitchWidget sw, bool b){
+    sw._yes = b;
+  }
+
   @override
   State<SwitchWidget> createState() => _SwitchWidgetState();
 }
 
 class _SwitchWidgetState extends State<SwitchWidget> {
-  // value of the switch widget
-
+ int h = 0; 
   @override
   Widget build(BuildContext context) {
     // change value of switch everytime it is toggled

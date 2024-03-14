@@ -99,6 +99,11 @@ class _SlambookFormState extends State<SlambookForm> {
                     _formKey.currentState!.save();
                     setState(() {
                       _showSummary = true;
+                      _formKey.currentState!.reset();
+                      sw = SwitchWidget((bool val) => _inRelationship = val);
+                      hs = HappySlider((double val) => _happinessLevel = val);
+                      sd = SuperpowerDropdown((String val) => _superpower = val);
+                      motto = Motto((String val) => _motto = val);
                     });
                   }
                 },
