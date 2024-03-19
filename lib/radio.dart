@@ -18,9 +18,8 @@ enum Mottos{
 class Motto extends StatefulWidget {
   final Function callback;
   // the group value of the radio buttons
-  Mottos _mottoChoice = Mottos.hate;
-
-  Motto(this.callback, {super.key});
+  Mottos _mottoChoice;
+  Motto(this._mottoChoice, this.callback, {super.key});
 
   static void reset(Motto motto){
     motto._mottoChoice = Mottos.hate;
@@ -48,7 +47,7 @@ class _MottoState extends State<Motto> {
               setState(() {
                 widget._mottoChoice = value!;
               });
-              widget.callback(widget._mottoChoice.mottoString);
+              widget.callback(widget._mottoChoice);
             },
           ),
         ),
@@ -61,7 +60,7 @@ class _MottoState extends State<Motto> {
               setState(() {
                 widget._mottoChoice = value!;
               });
-              widget.callback(widget._mottoChoice.mottoString);
+              widget.callback(widget._mottoChoice);
             },
           ),
         ),
@@ -74,7 +73,7 @@ class _MottoState extends State<Motto> {
               setState(() {
                 widget._mottoChoice = value!;
               });
-              widget.callback(widget._mottoChoice.mottoString);
+              widget.callback(widget._mottoChoice);
             },
           ),
         ),
@@ -87,7 +86,7 @@ class _MottoState extends State<Motto> {
               setState(() {
                 widget._mottoChoice = value!;
               });
-              widget.callback(widget._mottoChoice.mottoString);
+              widget.callback(widget._mottoChoice);
             },
           ),
         ),
@@ -100,7 +99,7 @@ class _MottoState extends State<Motto> {
               setState(() {
                 widget._mottoChoice = value!;
               });
-              widget.callback(widget._mottoChoice.mottoString);
+              widget.callback(widget._mottoChoice);
             },
           ),
         ),
@@ -113,7 +112,7 @@ class _MottoState extends State<Motto> {
               setState(() {
                 widget._mottoChoice = value!;
               });
-              widget.callback(widget._mottoChoice.mottoString);
+              widget.callback(widget._mottoChoice);
             },
           ),
         ),
@@ -126,7 +125,7 @@ class _MottoState extends State<Motto> {
               setState(() {
                 widget._mottoChoice = value!;
               });
-              widget.callback(widget._mottoChoice.mottoString);
+              widget.callback(widget._mottoChoice);
             },
           ),
         )
